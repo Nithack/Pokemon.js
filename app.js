@@ -157,6 +157,10 @@
 
     let pk2 = spawn(false);
 
+    if(pk1 == pk2){
+        pk2 = spawn(false);
+    }
+
     let s2 = document.createElement('img');
     s2.src = pk2.sprite[1];
     document.getElementById('pk2').appendChild(s2);
