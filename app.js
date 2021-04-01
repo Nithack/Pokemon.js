@@ -1,4 +1,6 @@
     
+    // Quando é o mesmo pokemon a barra de hp nao funciona direito
+
     var b = document.getElementById('battlemusic');
 
 	class Pokemon{
@@ -51,6 +53,24 @@
         ],
     };
 
+    function disableBtns(){
+        for(i=0; i>4; i++){
+            var d = document.getElementById('m'+i);
+            d.setAttribute('nome','queijo');
+        }
+    }
+
+    function enableBtns(){
+        for(i=0; i>4; i++){
+            var d = document.getElementById('m'+i);
+            d.disable= false;
+        }
+    }
+
+    var moveColor = () => {
+
+    }
+
     function spawn(bool){
     	let p = pkmList[Math.floor(Math.random()*pkmList.length)];
     	let pkm = new Pokemon(p[0], p[1], p[2], p[3]);
@@ -60,10 +80,22 @@
     let pk1 = spawn(true);
 
 
-    s1 = document.createElement('img');
+    let s1 = document.createElement('img');
     s1.src = pk1.sprite[0];
     document.getElementById('pk1').appendChild(s1);
+
     document.getElementById('hp1').innerHTML = '<p> HP:' + pk1.hp + '/' + pk1.fullhp + '</p>';
+
+    const bar1 = document.createElement('progress');
+    bar1.value = pk1.hp;
+    bar1.max = pk1.fullhp;
+    bar1.id = pk1.name;
+    document.getElementById('hpbar1').appendChild(bar1);
+
+
+
+
+
     for(i=0; i < 4; i++){
         document.getElementById('m'+ i).value = pk1.moves[i][0];
 
@@ -107,25 +139,47 @@
             document.getElementById('m'+i).style.background = "powderblue";
             break;
         }
-        };
+    };
 
+    function disableBt(){
+        document.getElementById("m0").disabled = true;
+        document.getElementById("m1").disabled = true;
+        document.getElementById("m2").disabled = true;
+        document.getElementById("m3").disabled = true;
+    }
+
+    function enableBt(){
+        document.getElementById("m0").disabled = false;
+        document.getElementById("m1").disabled = false;
+        document.getElementById("m2").disabled = false;
+        document.getElementById("m3").disabled = false;
+    }
 
     let pk2 = spawn(false);
 
-    s2 = document.createElement('img');
+    let s2 = document.createElement('img');
     s2.src = pk2.sprite[1];
     document.getElementById('pk2').appendChild(s2);
     document.getElementById('hp2').innerHTML = '<p> HP:' + pk2.hp + '/' + pk2.fullhp + '</p>';
+
+    const bar2 = document.createElement('progress');
+    bar2.value = pk2.hp;
+    bar2.max = pk2.fullhp;
+    bar2.id = pk2.name;
+    document.getElementById('hpbar2').appendChild(bar2);
+
 
     for (i = 0; i < 4; i++) {
         let btn = document.getElementById('m'+ i);
         let move = pk1.moves[i];
 
         function addHandler(btn, move, pk1, pk2) {
-            btn.addEventListener('click', function(e) {
-                b.play();
+            btn.addEventListener('click', function(e) {             
                 attack(move, pk1, pk2, 'hp2', 'Matheus ');
+                b.play();
+                disableBt();
                 setTimeout(attack, 2000, pk2.moves[Math.floor(Math.random() * 3)], pk2, pk1, 'hp1', "Red's " );
+                setTimeout(enableBt,4000);
             });
         }
         addHandler(btn, move, pk1 , pk2);
@@ -138,21 +192,20 @@
              let rtype = typeMatch[receiver.name];
              let mtype = move[1];
              let scale = 1;
-
              for(i=0; i<rtype.length; i++){
                 if(rtype[i].includes(mtype)){
                     switch(i){
                         case 0:
                         scale = 0; 
                         setTimeout(function(){
-                            document.getElementById('comment').innerHTML = '<p> It had no effect! </p>';
+                            document.getElementById('comment').innerHTML = '<p> Não teve efeito nenhum! </p>';
                         }, 1000);
                         break;
 
                         case 1: 
                         scale = 2; 
                         setTimeout(function(){
-                            document.getElementById('comment').innerHTML = '<p> It was super effective! </p>';
+                            document.getElementById('comment').innerHTML = '<p> Foi super efetivo! </p>';
                         }, 1000);
                         break;
 
@@ -160,7 +213,7 @@
 
                         scale = 0.5; 
                         setTimeout(function(){
-                            document.getElementById('comment').innerHTML ='<p> It was not very effective! </p>';
+                            document.getElementById('comment').innerHTML ='<p> Não foi muito efetivo! </p>';
                         }, 1000);
                         break;
                     }
@@ -171,11 +224,12 @@
              power *= scale;    
              receiver.hp -= Math.floor(power);
              document.getElementById(hp).innerHTML = `<p>HP: ${receiver.hp}/${receiver.fullhp}  </p>`;
+             document.getElementById(receiver.name).value = receiver.hp;
         }
         else{
             setTimeout(function(){
-                document.getElementById('comment').innerHTML = '<p> Attack missed! </p>';
-            })
+                document.getElementById('comment').innerHTML = '<p> Errou o ataque!</p>';
+            },1000);
         }
         checkWinner(hp);
     };
@@ -184,11 +238,18 @@
         let f = (pk1.hp <= 0) ? pk1 : (pk2.hp <= 0) ? pk2 : false;
         if(f != false){
             document.getElementById(hp).innerHTML = `<p> HP: 0/${f.fullhp}</p>`;
-            alert(`GAME OVER: ${f.name} fainted! `);
+            console.log(f.owner);
+            setTimeout(()=>{location.reload()}, 4000);
+            
+            
 
-            setTimeout(function(){
-                location.reload();
-            });
         }
 
     };
+
+
+
+
+    
+   
+    

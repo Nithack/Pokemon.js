@@ -15,10 +15,16 @@
         src: url('./assets/Pokemon X and Y.ttf') format('truetype');
     }
 
+    @media (max-width: 1000px){
+        
+        html{
+        background-color: black !important  ;
+    }   
+}
+
     h4{
         color:white;
         text-align:center;
-
 
     }
 
@@ -28,7 +34,15 @@
         background-repeat:no-repeat;
 
         max-height:100%;
+        max-width:100%;
 
+    }
+
+    #pokemonScreen{
+        display:flex;
+        flex-direction:column;
+        padding-left:25%;
+        padding-right:25%;
     }
 
     *{
@@ -42,16 +56,13 @@
         background-position:center;
         border:1px solid black;
 
+        align-items:center;
+
     }
 
-    table{
-
-        width:55%;
-        margin:0 auto;
-    }
-
-    td, tr{
-        width: 50%;
+    
+    #pokemonInfo td, tr{
+        width:50%;
     }
 
     #comment p{
@@ -68,16 +79,15 @@
 
     #pk1 img{
         width:220px;
+        height:180px;
 
     }
 
-    #hp1 p{
-        text-align:right;
-    }
-
+    
     #pk2 img{
-        width:170px;
-        padding-left:16vw;
+        width:220px;
+        height:180px;
+
     }
 
     #hp1, #hp2, #comment, #m0, #m1, #m2, #m3, #m4{
@@ -99,36 +109,93 @@
         border-left:solid 15px #ce4a38;
         border-radius:10px;
     }
+
+    #hp2 p, #hp1 p{
+        padding:0;
+        margin:0;
+        background-color:white;
+    }
+
+    #pk2{
+        margin:0;
+        width:100px;
+    }
+
+
+    .hpplace1 table{
+        margin:0;
+        padding-right:0;
+        width:100px;
+        float:right;
+        text-align:right;
+    }
+
+
+    #hpbar1 progress, #hpbar2 progress{
+        width:15vw;
+        padding:20px;
+    }
+
+
   
 	</style>
 </head>
 <body>
 
-	
+	<div id="pokemonScreen">
     <table class="Battle">  
-		<tr>
-			<td id='hp2'></td>
+		<tr class="pk2bar">
+            <td>
+                <table>
+                    <tr>
+			        <td id='hp2'></td>
+                    </tr>
+
+                    <tr>
+                    <td id='hpbar2'></td>
+                    </tr>
+
+                </table>
+            </td>
 			<td id='pk2'></td>
 		</tr>
-		<tr>
-			<td id="pk1"></td>
-			<td id="hp1"></td>
+
+		<tr class="pk1bar">
+            <td id='pk1'></td>
+			 <td class="hpplace1">
+                <table>
+                    <tr>
+                    <td id='hp1'></td>
+                    </tr>
+
+                    <tr>
+                    <td id='hpbar1'></td>
+                    </tr>
+                    
+                </table>
+             </td>
+
+            </td>
+
 		</tr>
     </table>
 
-    <table>
+
+
+    <table class="pokemonInfo">
 		<tr>
 			 <td colspan="2" class="texto" id="comment"><p>Select the First Move</p></td>
 		</tr>
 		<tr>
-			<td><input type="button" class="btn" id="m0"></td>
-			<td><input type="button" class="btn" id="m1"></td>
+			<td><input  type="button" class="btn" id="m0"></td>
+			<td><input  type="button" class="btn" id="m1"></td>
         </tr>
         <tr>
-			<td><input type="button" class="btn" id="m2"></td>
-			<td><input type="button" class="btn" id="m3"></td>
+			<td><input  type="button" class="btn" id="m2"></td>
+			<td><input  type="button" class="btn" id="m3"></td>
 		</tr>
 	</table>
+    </div>
 
     <h4>Made By <strong>Matheus Luiz</strong></h4>
 
