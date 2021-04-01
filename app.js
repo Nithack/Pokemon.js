@@ -155,12 +155,17 @@
         document.getElementById("m3").disabled = false;
     }
 
-    let pk2 = spawn(false);
+   
 
-    if(pk1 == pk2){
-        pk2 = spawn(false);
+   
+
+    var pk2 = spawn(false);
+
+    if(pk1.name == pk2.name){
+        
+        console.log('são iguais');
+        pk2 = spawn(false); 
     }
-
     let s2 = document.createElement('img');
     s2.src = pk2.sprite[1];
     document.getElementById('pk2').appendChild(s2);
@@ -239,15 +244,25 @@
     };
 
     function checkWinner(hp){
-        let f = (pk1.hp <= 0) ? pk1 : (pk2.hp <= 0) ? pk2 : false;
-        if(f != false){
-            document.getElementById(hp).innerHTML = `<p> HP: 0/${f.fullhp}</p>`;
-            console.log(f.owner);
-            setTimeout(()=>{location.reload()}, 4000);
-            
-            
+        if(pk1.hp <= 0){
 
-        }
+            document.getElementById('hp1').innerHTML = `<p>HP:0/${pk1.fullhp} </p>`
+            setTimeout(()=>{
+                alert('Seu '+ pk1.name +' perdeu a batalha! Você foi enviado para o centro Pokemon.');
+                location.reload();
+            },1000)
+            ;}
+
+        if(pk2.hp <= 0){
+
+            document.getElementById('hp2').innerHTML = `<p>HP:0/${pk2.fullhp} </p>`
+            setTimeout(()=>{
+                alert('Seu '+ pk2.name +' perdeu a batalha! Você foi enviado para o centro Pokemon.');
+                location.reload();
+            },1000)
+            ;}
+
+        
 
     };
 
