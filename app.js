@@ -161,11 +161,11 @@
 
     var pk2 = spawn(false);
 
-    if(pk1.name == pk2.name){
-        
+    do{
         console.log('são iguais');
         pk2 = spawn(false); 
-    }
+    } while(pk1.name == pk2.name);
+
     let s2 = document.createElement('img');
     s2.src = pk2.sprite[1];
     document.getElementById('pk2').appendChild(s2);
@@ -257,7 +257,7 @@
 
             document.getElementById('hp2').innerHTML = `<p>HP:0/${pk2.fullhp} </p>`
             setTimeout(()=>{
-                alert('Seu '+ pk2.name +' perdeu a batalha! Você foi enviado para o centro Pokemon.');
+                alert('O inimigo '+ pk2.name +' perdeu a batalha! A insígnia do ginásio é sua!.');
                 location.reload();
             },1000)
             ;}
