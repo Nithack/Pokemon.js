@@ -162,7 +162,6 @@
     var pk2 = spawn(false);
 
     do{
-        console.log('são iguais');
         pk2 = spawn(false); 
     } while(pk1.name == pk2.name);
 
