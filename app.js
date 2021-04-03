@@ -84,7 +84,7 @@
     s1.src = pk1.sprite[0];
     document.getElementById('pk1').appendChild(s1);
 
-    document.getElementById('hp1').innerHTML = '<p> HP:' + pk1.hp + '/' + pk1.fullhp + '</p>';
+    document.getElementById('hp1').innerHTML = `<p>${pk1.name} <br> HP:'  ${pk1.hp} /  ${pk1.fullhp} </p>`;
 
     const bar1 = document.createElement('progress');
     bar1.value = pk1.hp;
@@ -168,7 +168,7 @@
     let s2 = document.createElement('img');
     s2.src = pk2.sprite[1];
     document.getElementById('pk2').appendChild(s2);
-    document.getElementById('hp2').innerHTML = '<p> HP:' + pk2.hp + '/' + pk2.fullhp + '</p>';
+    document.getElementById('hp2').innerHTML = `<p>${pk2.name} <br> HP:'  ${pk2.hp} /  ${pk2.fullhp} </p>`;
 
     const bar2 = document.createElement('progress');
     bar2.value = pk2.hp;
