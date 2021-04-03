@@ -63,7 +63,7 @@
     s1 = document.createElement('img');
     s1.src = pk1.sprite[0];
     document.getElementById('pk1').appendChild(s1);
-    document.getElementById('hp1').innerHTML = '<p> HP:' + pk1.hp + '/' + pk1.fullhp + '</p>';
+    document.getElementById('hp1').innerHTML = `<p>${pk1.name} <br> HP:'  ${pk1.hp} /  ${pk1.fullhp} </p>`;
     for(i=0; i < 4; i++){
         document.getElementById('m'+ i).value = pk1.moves[i][0];
 
@@ -115,7 +115,7 @@
     s2 = document.createElement('img');
     s2.src = pk2.sprite[1];
     document.getElementById('pk2').appendChild(s2);
-    document.getElementById('hp2').innerHTML = '<p> HP:' + pk2.hp + '/' + pk2.fullhp + '</p>';
+    document.getElementById('hp2').innerHTML = `<p>${pk2.name} <br> HP:'  ${pk2.hp} /  ${pk2.fullhp} </p>`;
 
     for (i = 0; i < 4; i++) {
         let btn = document.getElementById('m'+ i);
